@@ -3,6 +3,7 @@
 ## Features - 功能描述
 - 可以記錄伺服器收到來自瀏覽器的request 資訊到 server log 
 - 紀錄request當下時間、請求的HTTP方法、URL
+- 紀錄從request至response所花費的時間
 
 ## 環境建置與需求 (prerequisites)
 ```
