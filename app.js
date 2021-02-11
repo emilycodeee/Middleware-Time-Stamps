@@ -3,6 +3,15 @@ const express = require('express')
 const app = express()
 const port = 3000
 
+//get local time
+const nowTime = new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' })
+
+
+app.use((req, res, next) => {
+  console.log(`${nowTime} | ${req.method} from ${req.originalUrl}`)
+  next()
+})
+
 app.get('/', (req, res) => {
   res.send('列出全部 Todo')
 })
