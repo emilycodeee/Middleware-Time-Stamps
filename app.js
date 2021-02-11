@@ -3,12 +3,20 @@ const express = require('express')
 const app = express()
 const port = 3000
 
-//get local time
-const nowTime = new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' })
-
 
 app.use((req, res, next) => {
-  console.log(`${nowTime} | ${req.method} from ${req.originalUrl}`)
+  //send req - start time
+  const start = new Date()
+  const formatTime = start.toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' })
+
+  //res sent - end time
+  res.on('finish', () => {
+    const end = new Date()
+    const spentTime = end - start
+
+    // print log
+    console.log(`${formatTime} | ${req.method} from ${req.originalUrl} | total time: ${spentTime}ms`)
+  })
   next()
 })
 
